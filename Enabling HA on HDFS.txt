@@ -1,0 +1,26 @@
+
+HDFS High Availability
+
+Prerequisites:
+Journal Node roles should have separate disks to write.
+Need additional 50 GB disks on the 3 mentioned hosts for JournalNode roles.
+
+Downtime required: 1 hour 30 minutes
+
+Plan Of Action:
+Put Cluster and CMS Services under Maintenance mode
+Go to the HDFS service.
+Select Actions > Enable High Availability.
+Accept the default name nameservice1 and click Continue.
+In the NameNode Hosts field, click Select a host. The host selection dialog box displays.
+Check the checkbox next to the IP-172-31-84-247 where the standby NameNode will be set up and click OK.
+In the JournalNode Hosts field, click Select hosts. The host selection dialog box displays.
+Check the check boxes next to an odd number of hosts (a minimum of three) to act as JournalNodes and click OK.
+Specify hosts: ip-172-31-84-247, ip-172-31-84-23 and ip-172-31-84-22
+Click Continue.
+In the JournalNode Edits Directory property, enter directory location for the JournalNode edits directory into the fields for each JournalNode host as /dfs/jn
+Keep it the same for all the hosts.
+The directory owner should be hdfs:hadoop and must have read, write, and execute permission (drwx------).
+Click continue and then Cloudera Manager will execute a set of commands that stop the dependent services, delete, create, and configure roles and directories as required, create a nameservice and failover controller, restart the dependent services, and deploy the new client configuration.
+Exit maintenance for cluster and CMS service.
+
